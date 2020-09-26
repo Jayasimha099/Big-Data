@@ -1,0 +1,13 @@
+The relational-algebra operation R(A, B) Join S(C, D) with B < C produces all tuples (a, b, c, d) such that tuple (a, b) is in relation R, tuple (c, d) is in S, and b < c. Give a MapReduce implementation of this operation, assuming R and S are sets.
+
+Map:
+
+For a tuple (a,b) in R emit a key/value pair (b, (‘R’,a)) 
+For a tuple (c,d) in S, emit a key/value pair(c, (‘S’,d))
+
+Reduce:
+
+For each (b,(‘R’,a)) comparison it with all (c, (‘S’,d)) 
+if b<c then emit a key/value pair (b, (a,b,c,d)) Otherwise, emit a key/value pair (b, NULL)
+
+
